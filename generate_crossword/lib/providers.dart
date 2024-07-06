@@ -8,6 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'isolates.dart';
 import 'model.dart' as model;
+import 'model.dart';
 
 part 'providers.g.dart';
 
@@ -60,7 +61,8 @@ class Size extends _$Size {
 }
 
 @riverpod
-Stream<model.WorkQueue> workQueue(WorkQueueRef ref) async* { // Modify this provider
+Stream<model.WorkQueue> workQueue(WorkQueueRef ref) async* {
+  final workers = ref.watch(workerCountProvider);
   final size = ref.watch(sizeProvider);
   final wordListAsync = ref.watch(wordListProvider);
   final emptyCrossword =
@@ -78,6 +80,7 @@ Stream<model.WorkQueue> workQueue(WorkQueueRef ref) async* { // Modify this prov
     data: (wordList) => exploreCrosswordSolutions(
       crossword: emptyCrossword,
       wordList: wordList,
+      maxWorkerCount: workers.count,
     ),
     error: (error, stackTrace) async* {
       debugPrint('Error loading word list: $error');

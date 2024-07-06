@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../model.dart';
 import '../providers.dart';
 import 'crossword_info_widget.dart';
 import 'crossword_widget.dart';
@@ -71,6 +72,15 @@ class _CrosswordGeneratorMenu extends ConsumerWidget {
               ref.read(showDisplayInfoProvider.notifier).toggle(),
           child: const Text('Display Info'),
         ),
+        for (final count in BackgroundWorkers.values)
+          MenuItemButton(
+            leadingIcon: count == ref.watch(workerCountProvider)
+                ? const Icon(Icons.radio_button_checked_outlined)
+                : const Icon(Icons.radio_button_unchecked_outlined),
+            onPressed: () =>
+                ref.read(workerCountProvider.notifier).setCount(count),
+            child: Text(count.label),
+          ),
     ],
     builder: (context, controller, child) => IconButton(
       onPressed: () => controller.open(),

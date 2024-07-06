@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:generate_crossword/utils.dart';
 import 'package:generate_crossword/widgets/ticker_builder.dart';
 
+import '../model.dart';
 import '../providers.dart';
 
 class CrosswordInfoWidget extends ConsumerWidget {
@@ -14,6 +15,7 @@ class CrosswordInfoWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = ref.watch(sizeProvider);
     final displayInfo = ref.watch(displayInfoProvider);
+    final workerCount = ref.watch(workerCountProvider).label;
     final startTime = ref.watch(startTimeProvider);
     final endTime = ref.watch(endTimeProvider);
     final remaining = ref.watch(expectedRemainingTimeProvider);
@@ -59,6 +61,8 @@ class CrosswordInfoWidget extends ConsumerWidget {
                     _CrosswordInfoRichText(
                         label: 'Grid filled',
                         value: displayInfo.gridFilledPercentage),
+                    _CrosswordInfoRichText(               // Add these two lines
+                        label: 'Max worker count', value: workerCount),
                     switch ((startTime, endTime)) {
                       (null, _) => const _CrosswordInfoRichText(
                         label: 'Time elapsed',

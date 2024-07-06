@@ -22,7 +22,7 @@ final wordListProvider = AutoDisposeFutureProvider<BuiltSet<String>>.internal(
 );
 
 typedef WordListRef = AutoDisposeFutureProviderRef<BuiltSet<String>>;
-String _$workQueueHash() => r'1c88fa732ab4e147378cf16e7eba561fb66254b6';
+String _$workQueueHash() => r'5267451dbdc9b229975d927509d5d14b8f3bcafa';
 
 /// See also [workQueue].
 @ProviderFor(workQueue)

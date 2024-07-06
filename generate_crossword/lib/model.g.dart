@@ -1214,3 +1214,27 @@ class DisplayInfoBuilder implements Builder<DisplayInfo, DisplayInfoBuilder> {
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
+
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$workerCountHash() => r'36dad09ba2cfe03b0879e7bf20059cec12e5118c';
+
+/// A provider that holds the current number of background workers to use.
+///
+/// Copied from [WorkerCount].
+@ProviderFor(WorkerCount)
+final workerCountProvider =
+    NotifierProvider<WorkerCount, BackgroundWorkers>.internal(
+  WorkerCount.new,
+  name: r'workerCountProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$workerCountHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$WorkerCount = Notifier<BackgroundWorkers>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

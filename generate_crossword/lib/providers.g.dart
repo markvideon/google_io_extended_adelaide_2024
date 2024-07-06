@@ -22,7 +22,7 @@ final wordListProvider = AutoDisposeFutureProvider<BuiltSet<String>>.internal(
 );
 
 typedef WordListRef = AutoDisposeFutureProviderRef<BuiltSet<String>>;
-String _$workQueueHash() => r'5267451dbdc9b229975d927509d5d14b8f3bcafa';
+String _$workQueueHash() => r'f7af7a45cf9151794c25ebfc87233f6275898214';
 
 /// See also [workQueue].
 @ProviderFor(workQueue)
@@ -36,22 +36,6 @@ final workQueueProvider = AutoDisposeStreamProvider<model.WorkQueue>.internal(
 );
 
 typedef WorkQueueRef = AutoDisposeStreamProviderRef<model.WorkQueue>;
-String _$expectedRemainingTimeHash() =>
-    r'1d054d63860240169de82ae4cdca3fc408d1d6f9';
-
-/// See also [expectedRemainingTime].
-@ProviderFor(expectedRemainingTime)
-final expectedRemainingTimeProvider = AutoDisposeProvider<Duration>.internal(
-  expectedRemainingTime,
-  name: r'expectedRemainingTimeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$expectedRemainingTimeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef ExpectedRemainingTimeRef = AutoDisposeProviderRef<Duration>;
 String _$sizeHash() => r'e551985965bf4119e8d90c0e8aa4f4d68a555b73';
 
 /// A provider that holds the current size of the crossword to generate.
@@ -68,34 +52,6 @@ final sizeProvider = NotifierProvider<Size, CrosswordSize>.internal(
 );
 
 typedef _$Size = Notifier<CrosswordSize>;
-String _$startTimeHash() => r'5b637a624a48eed021215571ff83a4a2405691c3';
-
-/// See also [StartTime].
-@ProviderFor(StartTime)
-final startTimeProvider = NotifierProvider<StartTime, DateTime?>.internal(
-  StartTime.new,
-  name: r'startTimeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$startTimeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$StartTime = Notifier<DateTime?>;
-String _$endTimeHash() => r'7acd30f633755ae938883bcb0ba25a40387194df';
-
-/// See also [EndTime].
-@ProviderFor(EndTime)
-final endTimeProvider = NotifierProvider<EndTime, DateTime?>.internal(
-  EndTime.new,
-  name: r'endTimeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$endTimeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$EndTime = Notifier<DateTime?>;
 String _$showDisplayInfoHash() => r'75a0679db4cc1a0d5cfa7aa33afc633faf08fc24';
 
 /// A provider that holds whether to display info.
@@ -131,5 +87,20 @@ final displayInfoProvider =
 );
 
 typedef _$DisplayInfo = AutoDisposeNotifier<model.DisplayInfo>;
+String _$puzzleHash() => r'dddad218b4318b008af2db67dd0ff284bcef3231';
+
+/// See also [Puzzle].
+@ProviderFor(Puzzle)
+final puzzleProvider =
+    AutoDisposeNotifierProvider<Puzzle, model.CrosswordPuzzleGame>.internal(
+  Puzzle.new,
+  name: r'puzzleProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$puzzleHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$Puzzle = AutoDisposeNotifier<model.CrosswordPuzzleGame>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

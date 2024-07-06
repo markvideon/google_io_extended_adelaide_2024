@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers.dart';
+import 'crossword_info_widget.dart';
 import 'crossword_widget.dart';
 
 class CrosswordGeneratorApp extends StatelessWidget {
@@ -20,8 +21,19 @@ class CrosswordGeneratorApp extends StatelessWidget {
           ),
           title: const Text('Crossword Generator'),
         ),
-        body: const SafeArea(
-          child: CrosswordWidget(),
+        body: SafeArea(
+          child: Consumer(
+            builder: (context, ref, child) {
+              return Stack(
+                children: [
+                  const Positioned.fill(
+                    child: CrosswordWidget(),
+                  ),
+                  if (ref.watch(showDisplayInfoProvider)) const CrosswordInfoWidget(),
+                ],
+              );
+            },
+          )
         ),
       ),
     );
@@ -50,6 +62,14 @@ class _CrosswordGeneratorMenu extends ConsumerWidget {
               ? const Icon(Icons.radio_button_checked_outlined)
               : const Icon(Icons.radio_button_unchecked_outlined),
           child: Text(entry.label),
+        ),
+        MenuItemButton(                                  // Add from here
+          leadingIcon: ref.watch(showDisplayInfoProvider)
+              ? const Icon(Icons.check_box_outlined)
+              : const Icon(Icons.check_box_outline_blank_outlined),
+          onPressed: () =>
+              ref.read(showDisplayInfoProvider.notifier).toggle(),
+          child: const Text('Display Info'),
         ),
     ],
     builder: (context, controller, child) => IconButton(
